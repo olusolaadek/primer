@@ -1,7 +1,9 @@
 // import additionFunction from "./sum";
 //import sumArrays from "./sum";
 import oddOnly, { sumValues } from "./sum";
-import { multiply, subtract } from "./operations";
+// import { multiply, subtract as deduct } from "./operations";
+import * as ops from "./operations";
+import { asyncAdd } from "./async";
 
 console.log("Hello");
 const myFunc1 = function () {
@@ -143,12 +145,24 @@ printDetails2(myEmployee);
 
 // Modules
 let values = [10, 20, 30, 40, 50];
-let total = sumValues(values);
-// console.log(total);
-console.log("Total: ", sumValues(values));
-console.log("Odd Total: ", oddOnly(values));
-console.log(`Multiply: ${multiply(values)}`);
-console.log(`Subtract: ${subtract(1000, values)}`);
+let total2 = sumValues(values);
+// console.log(total2);
+// console.log("Total: ", sumValues(values));
+// console.log("Odd Total: ", oddOnly(values));
+// console.log(`Multiply: ${ops.multiply(values)}`);
+// console.log(`Subtract: ${ops.subtract(1000, values)}`);
+
+let res = asyncAdd(values)
+  .then((data) => { console.log("Total Sum: ", data); })
+  .catch(err => { console.log(err); });
+// simplify async using await
+
+async function doTask(task) {
+  let total = await asyncAdd(values);
+  console.log("Main Total: ", total);
+}
+doTask();
+
 
 
 
